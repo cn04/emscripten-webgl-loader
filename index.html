@@ -77,11 +77,11 @@ function sendreq() {
     req.onreadystatechange = function (aEvt) {  
         if (req.readyState == 4) 
         {  
+            document.getElementById('ldtext').innerHTML = 'Downloading dependencies...';
 	    var script = document.createElement("script");
 	    script.type = "text/javascript";
 	    script.text = req.responseText;
 	    document.body.appendChild(script);
-	    document.getElementById('ldtext').innerHTML = 'Downloading dependencies...';
         }  
     };  
     req.send(); 
