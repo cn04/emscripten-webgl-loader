@@ -72,7 +72,7 @@ function sendreq() {
     var req = new XMLHttpRequest();    
     req.onprogress=updateProgress;
     // Insert the URL of your Emscripten-generated asm.js code here.
-    req.open('GET', '', true); 
+    req.open('GET', 'pview-panda.js', true); 
     // ------------------------------------------------------------
     req.onreadystatechange = function (aEvt) {  
         if (req.readyState == 4) 
