@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-<title>[your application name]</title>
+<title>[application name]</title>
 <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
 <style type="text/css">
 body {
@@ -41,23 +41,25 @@ span#ldtext {
 <body>
 <center>
 <div id="nosupport">
-<img id="logo" src="" alt="[your application logo]">
+<img id="logo" src="" alt="[application logo]">
 <span id="ldtext">Your browser must support WebGL and JavaScript to run this application.<br>Try a different browser.</span>
 </div>
 <div id="main">
 <div id="ld">
-<img id="logo" src="" alt="[your application logo]">
+<img id="logo" src="" alt="[application logo]">
 <span id="ldtext">Downloading application...</span>
 </div>
 <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 <script type="text/javascript">
+var ldtext = document.getElementById('ldtext');
+var ld = document.getElementById('ld');
 var Module = {
 	canvas: function() {
 		return document.getElementById('canvas');
 	},
 	setStatus: function(text) {
 		if (!text) {
-			docuement.getElementById('ld').style.display = 'none';
+			ld.style.display = 'none';
 		}
 	},
 };
@@ -65,19 +67,19 @@ function updateProgress(evt) {
    if (evt.lengthComputable) 
    { 
     var percentComplete = (evt.loaded / evt.total)*100;  
-    document.getElementById('ldtext').innerHTML = percentComplete + '%';
+    ldtext.innerHTML = percentComplete + '%';
    } 
 }   
 function sendreq() {  
     var req = new XMLHttpRequest();    
     req.onprogress=updateProgress;
-    // Insert the URL of your Emscripten-generated asm.js code here.
+    // Insert the URL of the Emscripten-generated asm.js code here.
     req.open('GET', 'pview-panda.js', true); 
     // ------------------------------------------------------------
     req.onreadystatechange = function (aEvt) {  
         if (req.readyState == 4) 
         {  
-            document.getElementById('ldtext').innerHTML = 'Downloading dependencies...';
+            ldtext.innerHTML = 'Downloading dependencies...';
 	    var script = document.createElement("script");
 	    script.type = "text/javascript";
 	    script.text = req.responseText;
