@@ -38,7 +38,9 @@ span.ldtext {
 	
 #canvas {
 	width: 100%;
-	height: 100%;}
+	height: 100%;
+	display: none;
+}
 </style>
 </head>
 
@@ -71,11 +73,12 @@ var Module = {
 	setStatus: function(text) {
 		if (!text) {
 			ld.style.display = "none";
+			canvas.style.display = "block";
 		}
 	},
 };
 function updateProgress(evt) {
-    var percentComplete = (evt.loaded / ASM_SIZE)*100;  
+    var percentComplete = Math.round((evt.loaded / ASM_SIZE)*100);  
     ldtext.innerHTML = "Downloading application... " + percentComplete + '%';
 }   
 function sendreq() {  
