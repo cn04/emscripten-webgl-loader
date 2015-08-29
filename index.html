@@ -53,7 +53,7 @@ span.ldtext {
 <div id="main">
 <div id="ld">
 <img id="logo" src="" alt="[application logo]">
-<span class="ldtext" id="ldtext">Downloading application...</span>
+<span class="ldtext" id="ldtext"></span>
 </div>
 <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 <script type="text/javascript">
@@ -79,7 +79,7 @@ var Module = {
 };
 function updateProgress(evt) {
     var percentComplete = Math.round((evt.loaded / ASM_SIZE)*100);  
-    ldtext.innerHTML = "Downloading application... " + percentComplete + '%';
+    ldtext.innerHTML = percentComplete + '%';
 }   
 function sendreq() {  
     var req = new XMLHttpRequest();    
