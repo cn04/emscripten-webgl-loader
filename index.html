@@ -2,7 +2,6 @@
 
 <head>
 <title>[application name]</title>
-<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
 <style type="text/css">
 body {
 	background: #eeeeee;
@@ -16,22 +15,13 @@ html {
 	margin: 0px;
 	padding: 0px;}
 	
-div#nosupport {
-	display: block;}
-	
 div#main {
-	display: none;}
-	
-.canvas.webgl div#main {
 	display: block;}
-	
-.canvas.webgl div#nosupport {
-	display: none;}
 	
 img#logo {
 	margin-top: 15%;}
 	
-span.ldtext {
+span#ldtext {
 	display: block;
 	font-size: 120%;
 	margin-top: 80px;}
@@ -46,14 +36,10 @@ span.ldtext {
 
 <body>
 <center>
-<div id="nosupport">
-<img id="logo" src="" alt="[application logo]">
-<span class="ldtext">Your browser must support WebGL and JavaScript to run this application.<br>Try a different browser.</span>
-</div>
 <div id="main">
 <div id="ld">
 <img id="logo" src="" alt="[application logo]">
-<span class="ldtext" id="ldtext"></span>
+<span id="ldtext"></span>
 </div>
 <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 <script type="text/javascript">
