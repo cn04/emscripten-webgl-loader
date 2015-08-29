@@ -57,21 +57,26 @@ span.ldtext {
 <script type="text/javascript">
 var ldtext = document.getElementById("ldtext");
 var ld = document.getElementById("ld");
+var canvas = document.getElementById("canvas");
+
 var Module = {
-	canvas: function() {
-		return document.getElementById("canvas");
-	},
+	canvas: (function() {
+		return canvas;
+	})(),
 	setStatus: function(text) {
 		if (!text) {
 			ld.style.display = "none";
 		}
 	},
+	printErr: function(text) {
+		canvas.style.display = "none";
+		ld.style.display = "block";
+		ldtext.innerHTML = "An error occurred.\n" + text;
+	}
 };
 function updateProgress(evt) {
-    alert('update');
    if (evt.lengthComputable) 
    { 
-   	alert('computable');
     var percentComplete = (evt.loaded / evt.total)*100;  
     ldtext.innerHTML = percentComplete + '%';
    } 
