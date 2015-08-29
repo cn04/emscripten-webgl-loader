@@ -36,7 +36,6 @@ span#credits {
 #canvas {
 	width: 100%;
 	height: 100%;
-	display: none;
 }
 </style>
 </head>
@@ -49,7 +48,7 @@ span#credits {
 <span id="ldtext"></span>
 <span id="credits">Powered by Panda3D and Emscripten</span>
 </div>
-<canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+<canvas id="canvas" style="display:none;" oncontextmenu="event.preventDefault()"></canvas>
 <script type="text/javascript">
 // The URL of the asm.js resource to load.
 var EMSCRIPTEN_ASM = 'pview-panda.js';
