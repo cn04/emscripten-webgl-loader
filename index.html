@@ -45,7 +45,7 @@ span#credits {
 <div id="main">
 <div id="ld">
 <img id="logo" src="" alt="[application logo]">
-<span id="ldtext"></span>
+<span id="ldtext">Downloading application...</span>
 <span id="credits">Powered by Panda3D and Emscripten</span>
 </div>
 <canvas id="canvas" style="display:none;" oncontextmenu="event.preventDefault()"></canvas>
@@ -71,13 +71,13 @@ var Module = {
 	},
 	totalDependencies: 0,
 	monitorRunDependencies: function(left) {
-		console.log(left);
-		console.log(this.totalDependencies);
+		this.totalDependencies = Math.max(this.totalDependencies, left);
+		ldtext.innerHTML = 'Downloading dependencies... ' + (this.totalDependencies-left) + '/' + this.totalDependencies;
 	},
 };
 function updateProgress(evt) {
     var percentComplete = Math.round((evt.loaded / ASM_SIZE)*100);  
-    ldtext.innerHTML = percentComplete + '%';
+    ldtext.innerHTML = 'Downloading application... ' + percentComplete + '%';
 }   
 function sendreq() {  
     var req = new XMLHttpRequest();    
@@ -86,7 +86,7 @@ function sendreq() {
     req.onreadystatechange = function (aEvt) {  
         if (req.readyState == 4) 
         {  
-            ldtext.innerHTML = "Downloading dependencies...";
+            ldtext.innerHTML = 'Downloading dependencies...';
 	    var script = document.createElement("script");
 	    script.type = "text/javascript";
 	    script.text = req.responseText;
