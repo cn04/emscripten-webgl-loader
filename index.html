@@ -55,6 +55,11 @@ span.ldtext {
 </div>
 <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 <script type="text/javascript">
+// The URL of the asm.js resource to load.
+var EMSCRIPTEN_ASM = 'pview-panda.js';
+// The uncompressed size of that resource (in bytes).
+var ASM_SIZE = 1921587;
+
 var ldtext = document.getElementById("ldtext");
 var ld = document.getElementById("ld");
 var canvas = document.getElementById("canvas");
@@ -70,18 +75,13 @@ var Module = {
 	},
 };
 function updateProgress(evt) {
-   if (evt.lengthComputable) 
-   { 
-    var percentComplete = (evt.loaded / evt.total)*100;  
-    ldtext.innerHTML = percentComplete + '%';
-   } 
+    var percentComplete = (evt.loaded / ASM_SIZE)*100;  
+    ldtext.innerHTML = "Downloading application... " + percentComplete + '%';
 }   
 function sendreq() {  
     var req = new XMLHttpRequest();    
     req.onprogress=updateProgress;
-    // Insert the URL of the Emscripten-generated asm.js code here.
-    req.open('GET', 'pview-panda.js', true); 
-    // ------------------------------------------------------------
+    req.open('GET', EMSCRIPTEN_ASM, true); 
     req.onreadystatechange = function (aEvt) {  
         if (req.readyState == 4) 
         {  
