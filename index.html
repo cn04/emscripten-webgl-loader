@@ -69,6 +69,9 @@ var Module = {
 			canvas.style.display = "inline";
 		}
 	},
+	monitorRunDependencies: function(left) {
+		console.log(left);
+	},
 };
 function updateProgress(evt) {
     var percentComplete = Math.round((evt.loaded / ASM_SIZE)*100);  
