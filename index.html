@@ -72,8 +72,7 @@ var Module = {
 	totalDependencies: 0,
 	monitorRunDependencies: function(left) {
 		this.totalDependencies = Math.max(this.totalDependencies, left);
-		var percentComplete = Math.round(((this.totalDependencies-left) / this.totalDependencies)*100);
-		ldtext.innerHTML = 'Downloading dependencies... ' + percentComplete + '%';
+		ldtext.innerHTML = 'Downloading dependencies... ' + (this.totalDependencies-left) + '/' + this.totalDependencies;
 	},
 };
 function updateProgress(evt) {
