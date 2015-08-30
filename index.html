@@ -50,7 +50,7 @@ progress#ldbar {
 <div id="ld">
 <img id="logo" src="" alt="[application logo]">
 <span id="ldtext">Downloading application...</span>
-<progress id="ldbar" max="100"></progress>
+<progress id="ldbar" max="100" value="0"></progress>
 <span id="credits">Powered by Panda3D and Emscripten</span>
 </div>
 <canvas id="canvas" style="display:none;" oncontextmenu="event.preventDefault()"></canvas>
@@ -94,7 +94,6 @@ function sendreq() {
         if (req.readyState == 4) 
         {  
             ldtext.innerHTML = 'Downloading dependencies...';
-            ldbar.removeAttribute('value');
 	    var script = document.createElement("script");
 	    script.type = "text/javascript";
 	    script.text = req.responseText;
