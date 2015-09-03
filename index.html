@@ -74,12 +74,12 @@ var Module = {
 	totalDependencies: 0,
 	monitorRunDependencies: function(left) {
 		this.totalDependencies = Math.max(this.totalDependencies, left);
-		var percentComplete = Math.round(((this.totalDependencies-left) / this.totalDependencies)*100);
+		var percentComplete = (this.totalDependencies-left) / this.totalDependencies)*100;
 		ldbar.value = percentComplete;
 	},
 };
 function updateProgress(evt) {
-    var percentComplete = Math.round((evt.loaded / ASM_SIZE)*100);  
+    var percentComplete = (evt.loaded / ASM_SIZE)*100;  
     ldbar.value = percentComplete;
 }   
 function sendreq() {  
