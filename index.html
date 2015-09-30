@@ -45,8 +45,9 @@ progress#ldbar {
 <div id="main">
 <div id="ld">
 <img id="logo" src="" alt="[application logo]">
-<span id="ldtext">Downloading application...</span>
-<progress id="ldbar" max="100" value="0"></progress>
+<span id="ldtext">Uh, you have JavaScript disabled. This application won't work.</span>
+<script type="text/javascript">var ldtext = document.getElementById("ldtext");ldtext.innerHTML="Checking browser compatibility...";</script>
+<progress id="ldbar" max="100" value="0" style="display:none;"></progress>
 <span id="credits">Powered by Panda3D and Emscripten</span>
 </div>
 <canvas id="canvas" style="display:none;" oncontextmenu="event.preventDefault()"></canvas>
@@ -83,6 +84,7 @@ function updateProgress(evt) {
     ldbar.value = percentComplete;
 }   
 function sendreq() {  
+	ldtext.innerHTML = "Downloading application...";
     var req = new XMLHttpRequest();    
     req.onprogress=updateProgress;
     req.open('GET', EMSCRIPTEN_ASM, true); 
@@ -90,16 +92,22 @@ function sendreq() {
         if (req.readyState == 4) 
         {  
             ldtext.innerHTML = 'Downloading dependencies...';
-	    var script = document.createElement("script");
-	    script.type = "text/javascript";
-	    script.text = req.responseText;
-	    document.body.appendChild(script);
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.text = req.responseText;
+			document.body.appendChild(script);
         }  
     };  
     req.send(); 
 }
 window.onload = function() {
-	sendreq();
+	if (window.WebGLRenderingContext) {
+		ldbar.style.display = "block";
+		sendreq();
+	}
+	else {
+		ldtext.innerHTML = "Uh, your browser doesn't support WebGL. This application won't work.";
+	}
 }
 </script>
 </div>
