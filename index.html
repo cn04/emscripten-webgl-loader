@@ -74,15 +74,9 @@ var Module = {
 	},
 	totalDependencies: 0,
 	monitorRunDependencies: function(left) {
-		if (left) {
-			this.totalDependencies = Math.max(this.totalDependencies, left);
-			var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*100;
-			ldbar.value = percentComplete;
-		}
-		else {
-			ldbar.style.display = "none";
-			ldtext.innerHTML = "Launching...";
-		}
+		this.totalDependencies = Math.max(this.totalDependencies, left);
+		var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*100;
+		ldbar.value = percentComplete;
 	},
 };
 function updateProgress(evt) {
