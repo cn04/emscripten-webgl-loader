@@ -77,6 +77,9 @@ var Module = {
 		this.totalDependencies = Math.max(this.totalDependencies, left);
 		var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*100;
 		ldbar.value = percentComplete;
+		if (ldbar.value == 100) {
+			ldtext.innerHTML = "Launching...";
+		}
 	},
 };
 function updateProgress(evt) {
@@ -84,7 +87,7 @@ function updateProgress(evt) {
     ldbar.value = percentComplete;
 }   
 function sendreq() {  
-	ldtext.innerHTML = "Downloading application...";
+    ldtext.innerHTML = "Downloading application...";
     var req = new XMLHttpRequest();    
     req.onprogress=updateProgress;
     req.open('GET', EMSCRIPTEN_ASM, true); 
@@ -92,10 +95,10 @@ function sendreq() {
         if (req.readyState == 4) 
         {  
             ldtext.innerHTML = 'Downloading dependencies...';
-			var script = document.createElement("script");
-			script.type = "text/javascript";
-			script.text = req.responseText;
-			document.body.appendChild(script);
+	    var script = document.createElement("script");
+	    script.type = "text/javascript";
+	    script.text = req.responseText;
+	    document.body.appendChild(script);
         }  
     };  
     req.send(); 
