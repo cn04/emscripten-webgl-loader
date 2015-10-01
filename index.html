@@ -101,7 +101,9 @@ function sendreq() {
     req.send(); 
 }
 window.onload = function() {
-	if (window.WebGLRenderingContext) {
+	try { gl = canvas.getContext("webgl"); }
+	catch (x) { gl = null; }
+	if (gl) {
 		ldbar.style.display = "block";
 		sendreq();
 	}
