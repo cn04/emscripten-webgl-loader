@@ -77,9 +77,6 @@ var Module = {
 		this.totalDependencies = Math.max(this.totalDependencies, left);
 		var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*100;
 		ldbar.value = percentComplete;
-		if (ldbar.value == 100) {
-			ldtext.innerHTML = "Launching...";
-		}
 	},
 };
 function updateProgress(evt) {
