@@ -95,7 +95,7 @@ var Module = {
     		if (text.toLowerCase().startsWith("downloading data... (")) {
       			ldtext.innerHTML = "Downloading data...";
       			var parts = text.substring(21, text.length - 1).split('/');
-      			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1])) * 100
+      			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1]))*50 + 50
       			ldbar.style.width = percentComplete + '%';
     		} else {
     			ldbar.style.width = 100 + '%';
@@ -106,12 +106,12 @@ var Module = {
 	monitorRunDependencies: function(left) {
 		ldtext.innerHTML = "Downloading data...";
 		this.totalDependencies = Math.max(this.totalDependencies, left);
-		var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*100;
+		var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*50 + 50;
 		ldbar.style.width = percentComplete + '%';
 	},
 };
 function updateProgress(evt) {
-    var percentComplete = (evt.loaded / ASM_SIZE)*100;  
+    var percentComplete = (evt.loaded / ASM_SIZE)*50;  
     ldbar.style.width = percentComplete + '%';
 }   
 function sendreq() {  
@@ -122,7 +122,7 @@ function sendreq() {
     req.onreadystatechange = function (aEvt) {  
         if (req.readyState == 4) 
         {  
-            	ldbar.style.width = 100 + '%';
+            	ldbar.style.width = 50 + '%';
             	ldtext.innerHTML = "Loading application...";
             	var blob = new Blob([req.responseText], {type: 'text/javascript'});
 	    	var script = document.createElement("script");
