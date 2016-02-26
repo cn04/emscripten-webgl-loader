@@ -103,10 +103,12 @@ function sendreq() {
         {  
             	ldbar.value = 100;
             	ldtext.innerHTML = "Loading application...";
+            	var blob = new Blob([req.responseText], {type: 'text/javascript'});
 	    	var script = document.createElement("script");
 	    	script.type = "text/javascript";
-	    	script.text = req.responseText;
-	    	script.async = "true";
+	    	script.async = true;
+	    	script.defer = true;
+	    	script.src = URL.createObjectURL(blob);
 	    	document.body.appendChild(script);
         }  
     };  
