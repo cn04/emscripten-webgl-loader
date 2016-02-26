@@ -122,7 +122,7 @@ function sendreq() {
         if (req.readyState == 4) 
         {  
             	ldbar.style.width = 50 + '%';
-            	ldtext.innerHTML = "Loading application...";
+            	ldtext.innerHTML = "Initializing application...";
             	var blob = new Blob([req.responseText], {type: 'text/javascript'});
 	    	var script = document.createElement("script");
 	    	script.type = "text/javascript";
