@@ -88,6 +88,7 @@ var Module = {
 		return canvas;
 	})(),
 	setStatus: function(text) {
+		if (text != undefined) {
 		if (!text || text.startsWith("Done")) {
       			ld.style.display = "none";
       			canvas.style.display = "block";
@@ -99,7 +100,7 @@ var Module = {
       			ldbar.style.width = percentComplete + '%';
     		} else {
       			ldtext.innerHTML = text;
-    		}
+    		}}
 	},
 	totalDependencies: 0,
 	monitorRunDependencies: function(left) {
