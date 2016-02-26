@@ -88,19 +88,18 @@ var Module = {
 		return canvas;
 	})(),
 	setStatus: function(text) {
-		if (text != undefined) {
 		if (!text || text.startsWith("Done")) {
       			ld.style.display = "none";
       			canvas.style.display = "block";
     		}
-    		if (text.startsWith("Downloading data... (")) {
+    		else if (text.startsWith("Downloading data... (")) {
       			ldtext.innerHTML = "Downloading data...";
       			var parts = text.substring(21, text.length - 1).split('/');
       			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1]))*50 + 50
       			ldbar.style.width = percentComplete + '%';
     		} else {
       			ldtext.innerHTML = text;
-    		}}
+    		}
 	},
 	totalDependencies: 0,
 	monitorRunDependencies: function(left) {
