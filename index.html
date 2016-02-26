@@ -68,12 +68,22 @@ var Module = {
 	})(),
 	setStatus: function(text) {
 		if (!text) {
-			ld.style.display = "none";
-			canvas.style.display = "block";
-		}
+      			ld.style.display = "none";
+      			canvas.style.display = "block";
+    		}
+    		if (text.startsWith("Downloading data... (")) {
+      			ldtext.innerHTML = "Downloading data...";
+      			var parts = text.substring(21, text.length - 1).split('/');
+      			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1])) * 100
+      			ldbar.value = percentComplete;
+    		} else {
+    			ldbar.value = 100;
+      			ldtext.innerHTML = text;
+    		}
 	},
 	totalDependencies: 0,
 	monitorRunDependencies: function(left) {
+		ldtext.innerHTML = "Downloading data...";
 		this.totalDependencies = Math.max(this.totalDependencies, left);
 		var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*100;
 		ldbar.value = percentComplete;
@@ -91,11 +101,12 @@ function sendreq() {
     req.onreadystatechange = function (aEvt) {  
         if (req.readyState == 4) 
         {  
-            ldtext.innerHTML = 'Downloading dependencies...';
-	    var script = document.createElement("script");
-	    script.type = "text/javascript";
-	    script.text = req.responseText;
-	    document.body.appendChild(script);
+            	ldbar.value = 100;
+            	ldtext.innerHTML = "Loading application...";
+	    	var script = document.createElement("script");
+	    	script.type = "text/javascript";
+	    	script.text = req.responseText;
+	    	document.body.appendChild(script);
         }  
     };  
     req.send(); 
