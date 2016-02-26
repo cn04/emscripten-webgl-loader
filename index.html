@@ -2,13 +2,15 @@
 
 <head>
 <title>[application name]</title>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto" />
 <style type="text/css">
 body {
-	background: #eeeeee;
-	font-family: sans-serif;
-	color: #000000;
+	background: #181818;
+	font-family: Roboto, sans-serif;
+	color: #eee;
 	margin: 0px;
-	padding: 0px;}
+	padding: 0px;
+}
 
 html {
 	height:100%;
@@ -23,20 +25,39 @@ img#logo {
 	
 span#ldtext {
 	display: block;
-	font-size: 120%;
-	margin-top: 80px;}
-	
+	font-size: 13pt;
+	margin-top: 80px;
+}
+
 span#credits {
 	position:fixed;
 	left: 0;
 	bottom: 0;
-	padding: 5px;
-	font-size: 80%;}
-	
-progress#ldbar {
+	padding: 10px;
+	background-color: #111;
+	width:100%;
+	text-align: left;
+	font-size: 10pt;}
+
+a {
+  	color: #eee;
+  	text-decoration: none;}
+
+a:hover {
+  	color: #eee;
+  	text-decoration: underline;}
+  	
+ div#ldbar-outer {
+	background-color: #333;
 	margin-top: 15px;
-	height: 5px;
-	width: 400px;}
+	height: 11px;
+	width: 400px;
+	text-align: left;}
+
+div#ldbar {
+	background-color: #39f;
+	width:0%;
+	height:100%;}
 </style>
 </head>
 
@@ -47,10 +68,10 @@ progress#ldbar {
 <img id="logo" src="" alt="[application logo]">
 <span id="ldtext">Uh, you have JavaScript disabled. This application won't work.</span>
 <script type="text/javascript">var ldtext = document.getElementById("ldtext");ldtext.innerHTML="Checking browser compatibility...";</script>
-<progress id="ldbar" max="100" value="0" style="display:none;"></progress>
-<span id="credits">Powered by Panda3D and Emscripten</span>
+<div id="ldbar-outer"><div id="ldbar"></div></div>
 </div>
 <canvas id="canvas" style="display:none;" oncontextmenu="event.preventDefault()"></canvas>
+<span id="credits">Powered by <a href="https://www.panda3d.org/" target="_blank">Panda3D</a> and <a href="https://kripken.github.io/emscripten-site/" target="_blank">Emscripten</a></span>
 <script type="text/javascript">
 // The URL of the asm.js resource to load.
 var EMSCRIPTEN_ASM = 'main.js';
