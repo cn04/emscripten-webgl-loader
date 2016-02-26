@@ -88,11 +88,11 @@ var Module = {
 		return canvas;
 	})(),
 	setStatus: function(text) {
-		if (!text || text.toString().toLowerCase().startsWith("done")) {
+		if (!text || text.startsWith("Done")) {
       			ld.style.display = "none";
       			canvas.style.display = "block";
     		}
-    		if (text.toString().toLowerCase().startsWith("downloading data... (")) {
+    		if (text.startsWith("Downloading data... (")) {
       			ldtext.innerHTML = "Downloading data...";
       			var parts = text.substring(21, text.length - 1).split('/');
       			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1]))*50 + 50
