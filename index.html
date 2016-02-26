@@ -83,16 +83,20 @@ var ldbar = document.getElementById("ldbar");
 var ld = document.getElementById("ld");
 var canvas = document.getElementById("canvas");
 
+function strStartsWith(str, prefix) {
+    return str.indexOf(prefix) === 0;
+}
+
 var Module = {
 	canvas: (function() {
 		return canvas;
 	})(),
 	setStatus: function(text) {
-		if (!text || text.startsWith("Done")) {
+		if (!text || strStartsWith(text, "Done")) {
       			ld.style.display = "none";
       			canvas.style.display = "block";
     		}
-    		else if (text.startsWith("Downloading data... (")) {
+    		else if (strStartsWith(text, "Downloading data... (")) {
       			ldtext.innerHTML = "Downloading data...";
       			var parts = text.substring(21, text.length - 1).split('/');
       			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1]))*50 + 50
