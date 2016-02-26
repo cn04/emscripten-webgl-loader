@@ -66,7 +66,7 @@ div#ldbar {
 <div id="main">
 <div id="ld">
 <img id="logo" src="" alt="[application logo]">
-<span id="ldtext">Uh, you have JavaScript disabled. This application won't work.</span>
+<span id="ldtext">You have JavaScript disabled. This application won't work.</span>
 <script type="text/javascript">var ldtext = document.getElementById("ldtext");ldtext.innerHTML="Checking browser compatibility...";</script>
 <div id="ldbar-outer"><div id="ldbar"></div></div>
 </div>
@@ -142,8 +142,12 @@ window.onload = function() {
 		sendreq();
 	}
 	else {
-		ldtext.innerHTML = "Uh, your browser doesn't support WebGL. This application won't work.";
+		ldtext.innerHTML = "Your browser doesn't support WebGL. This application won't work.";
 	}
+}
+window.onerror = function(event) {
+  ldtext.innerHTML = "There was a problem.";
+  ldbar.style.display = "none";
 }
 </script>
 </div>
