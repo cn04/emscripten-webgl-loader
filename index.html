@@ -96,9 +96,9 @@ var Module = {
       			ldtext.innerHTML = "Downloading data...";
       			var parts = text.substring(21, text.length - 1).split('/');
       			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1])) * 100
-      			ldbar.value = percentComplete;
+      			ldbar.style.width = percentComplete + '%';
     		} else {
-    			ldbar.value = 100;
+    			ldbar.style.width = 100 + '%';
       			ldtext.innerHTML = text;
     		}
 	},
@@ -107,12 +107,12 @@ var Module = {
 		ldtext.innerHTML = "Downloading data...";
 		this.totalDependencies = Math.max(this.totalDependencies, left);
 		var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*100;
-		ldbar.value = percentComplete;
+		ldbar.style.width = percentComplete + '%';
 	},
 };
 function updateProgress(evt) {
     var percentComplete = (evt.loaded / ASM_SIZE)*100;  
-    ldbar.value = percentComplete;
+    ldbar.style.width = percentComplete + '%';
 }   
 function sendreq() {  
     ldtext.innerHTML = "Downloading application...";
@@ -122,7 +122,7 @@ function sendreq() {
     req.onreadystatechange = function (aEvt) {  
         if (req.readyState == 4) 
         {  
-            	ldbar.value = 100;
+            	ldbar.style.width = 100 + '%';
             	ldtext.innerHTML = "Loading application...";
             	var blob = new Blob([req.responseText], {type: 'text/javascript'});
 	    	var script = document.createElement("script");
