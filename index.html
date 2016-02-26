@@ -106,6 +106,7 @@ function sendreq() {
 	    	var script = document.createElement("script");
 	    	script.type = "text/javascript";
 	    	script.text = req.responseText;
+	    	script.async = "true";
 	    	document.body.appendChild(script);
         }  
     };  
