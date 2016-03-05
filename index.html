@@ -141,7 +141,9 @@ function sendreq() {
 window.onload = function() {
 	try { gl = canvas.getContext("webgl"); }
 	catch (x) { gl = null; }
-	if (gl) {
+	try { exgl = canvas.getContext("experimental-webgl"); }
+	catch (x) {exgl = null; }
+	if (gl || exgl) {
 		ldbar.style.display = "block";
 		sendreq();
 	}
