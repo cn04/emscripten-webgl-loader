@@ -92,11 +92,11 @@ var Module = {
 		return canvas;
 	})(),
 	setStatus: function(text) {
-		if (!text || strStartsWith(text, "Done")) {
+		if (strStartsWith(text.toLowerCase(), "done")) {
       			ld.style.display = "none";
       			canvas.style.display = "block";
     		}
-    		else if (strStartsWith(text, "Downloading data... (")) {
+    		else if (strStartsWith(text.toLowerCase(), "downloading data... (")) {
       			ldtext.innerHTML = "Downloading data...";
       			var parts = text.substring(21, text.length - 1).split('/');
       			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1]))*50 + 50
