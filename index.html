@@ -107,13 +107,6 @@ var Module = {
       			ldtext.innerHTML = text;
     		}
 	},
-	totalDependencies: 0,
-	monitorRunDependencies: function(left) {
-		ldtext.innerHTML = "Downloading data...";
-		this.totalDependencies = Math.max(this.totalDependencies, left);
-		var percentComplete = ((this.totalDependencies-left) / this.totalDependencies)*50 + 50;
-		ldbar.style.width = percentComplete + '%';
-	},
 };
 function updateProgress(evt) {
     var percentComplete = (evt.loaded / ASM_SIZE)*50;  
