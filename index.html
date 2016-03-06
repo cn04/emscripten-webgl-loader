@@ -101,7 +101,9 @@ var Module = {
       			var parts = text.substring(21, text.length - 1).split('/');
       			var percentComplete = (parseInt(parts[0]) / parseInt(parts[1]))*50 + 50
       			ldbar.style.width = percentComplete + '%';
-    		} else {
+    		}
+    		else if (!text) {}
+    		else {
       			ldtext.innerHTML = text;
     		}
 	},
