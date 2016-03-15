@@ -138,7 +138,11 @@ window.onload = function() {
 	catch (x) { gl = null; }
 	try { exgl = canvas.getContext("experimental-webgl"); }
 	catch (x) {exgl = null; }
-	if (gl || exgl) {
+	try { gl2 = canvas.getContext("webgl2"); }
+	catch (x) {gl2 = null; }
+	try { exgl2 = canvas.getContext("experimental-webgl2"); }
+	catch (x) {exgl2 = null; }
+	if (gl || exgl || gl2 || exgl2) {
 		ldbar.style.display = "block";
 		sendreq();
 	}
